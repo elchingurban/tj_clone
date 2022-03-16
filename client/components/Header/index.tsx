@@ -38,11 +38,10 @@ export const Header: React.FC = () => {
                 <Link href="/">
                     <a>
                         <Button variant="contained" className={styles.penButton}> 
-                            <PenIcon /> 
+                            Новая запись 
                         </Button>
                     </a>
                 </Link>
-        
             </div>
 
             <div className="d-flex align-center">

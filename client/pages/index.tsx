@@ -1,10 +1,9 @@
 import Image from 'next/image'
 import Head from 'next/head';
-import { Paper, Typography } from '@material-ui/core';
 
 import { Header } from '../components/Header';
 import { Post } from '../components/Post';
-// import { LeftMenu } from '../components/LeftMenu';
+import { LeftMenu } from '../components/LeftMenu';
 
 export default function Home() {
   return (
@@ -18,13 +17,19 @@ export default function Home() {
           rel="stylesheet"></link>
       </Head>
       <Header />
-      <div>
-        <div className='leftSide'></div>
+      <div className='wrapper'>
+        <div className='leftSide'>
+          <LeftMenu />
+        </div>
         <div className='content'>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
           <Post />
         </div>
         <div className='rightSide'></div>
       </div>
     </div>
-  )
+  );
 }
