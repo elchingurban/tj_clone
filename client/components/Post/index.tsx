@@ -4,6 +4,7 @@ import { Paper, Typography } from '@material-ui/core';
 import Image from 'next/image';
 
 import styles from './Post.module.scss';
+import PostActions from '../PostActions';
 
 export const Post: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ export const Post: React.FC = () => {
         height={400}
         width={600}
       />
+      <PostActions />
     </Paper>
   );
 };
