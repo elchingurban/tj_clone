@@ -52,7 +52,7 @@ export const Header: React.FC = () => {
                     <NotificationsIcon />
                 </IconButton>
 
-                <Link href="/profile/">
+                <Link href="profile/elchin">
                     <a className="d-flex align-center">
                         <Avatar
                             className={styles.avatar} 
