@@ -10,7 +10,11 @@ export const Post: React.FC = () => {
   return (
     <Paper elevation={0} className="p-20" classes={{ root: styles.paper }}>
       <Typography variant="h5" className={ styles.title }>
-        Авиаудар по Мариуполю. Главное о последствиях и о позициях Украины и
+        <Link href='/news/mariuopol'>
+          <a>
+            Авиаудар по Мариуполю. Главное о последствиях и о позициях Украины и России
+          </a>
+        </Link>
       </Typography>
       <Typography className="mt-15 mb-15">
         Украинские власти сообщают о трёх погибших, среди которых — ребёнок. В
