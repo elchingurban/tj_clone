@@ -35,7 +35,7 @@ export const Header: React.FC = () => {
                     <SearchIcon />
                     <input placeholder="Search" />  
                 </div>
-                <Link href="/">
+                <Link href="/write">
                     <a>
                         <Button variant="contained" className={styles.penButton}> 
                             Новая запись 
