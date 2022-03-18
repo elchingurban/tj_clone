@@ -7,8 +7,8 @@ export const comments = [
   {
     id: 1,
     user: {
-      fullname: 'Elchin Gurbanli',
-      avatar: 'https://leonardo.osnova.io/104b03b4-5173-fd9f-2af9-b458dddc4a23/-/scale_crop/108x108/-/format/webp/',
+      fullName: 'Elchin Gurbanli',
+      avatarUrl: 'https://leonardo.osnova.io/51a34da2-6f06-5f97-a3b3-5a94b2d00666/',
     },
     text: 'Теперь, каждое рабочее утро, после кровати, я перекладываюсь туда спать ещё на часок. Ну и…',
     post: {
@@ -19,8 +19,8 @@ export const comments = [
   {
     id: 2,
     user: {
-      fullname: 'Elchin Gurbanli',
-      avatar: 'https://leonardo.osnova.io/104b03b4-5173-fd9f-2af9-b458dddc4a23/-/scale_crop/108x108/-/format/webp/',
+      fullName: 'Elchin Gurbanli',
+      avatarUrl: 'https://leonardo.osnova.io/a2759960-0908-57df-aac5-61d49d1ef260/',
     },
     text: 'Теперь, каждое рабочее утро, после кровати, я перекладываюсь туда спать ещё на часок. Ну и…',
     post: {
@@ -31,8 +31,8 @@ export const comments = [
   {
     id: 3,
     user: {
-      fullname: 'Elchin Gurbanli',
-      avatar: 'https://leonardo.osnova.io/104b03b4-5173-fd9f-2af9-b458dddc4a23/-/scale_crop/108x108/-/format/webp/',
+      fullName: 'Elchin Gurbanli',
+      avatarUrl: 'https://leonardo.osnova.io/104b03b4-5173-fd9f-2af9-b458dddc4a23/-/scale_crop/108x108/-/format/webp/',
     },
     text: 'Теперь, каждое рабочее утро, после кровати, я перекладываюсь туда спать ещё на часок. Ну и…',
     post: {
@@ -44,7 +44,7 @@ export const comments = [
 
 interface CommentItemProps {
   user: {
-    fullname: string;
+    fullName: string;
   };
   text: string;
   post: {
@@ -58,7 +58,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ user, text, post }) => {
       <div className={styles.userInfo}>
         <img src="https://leonardo.osnova.io/598fc957-a3f6-598c-b6f9-a033c3941d12/-/scale_crop/64x64/-/format/webp/" />
         <a href="#">
-          <b>{user.fullname}</b>
+          <b>{user.fullName}</b>
         </a>
       </div>
       <p className={styles.text}>{text}</p>
