@@ -1,6 +1,5 @@
 .paper {
   margin-top: -20px;
-  margin-right: 10px;
   border-radius: 0 !important;
   padding: 30px 0;
 
@@ -14,6 +13,13 @@
   font-weight: 500 !important;
   margin-bottom: 20px !important;
   font-size: 36px !important;
+}
+
+.text {
+  a {
+    color: #07A287;
+    text-decoration: underline;
+  }
 }
 
 .userInfo {

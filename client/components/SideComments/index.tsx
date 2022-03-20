@@ -1,47 +1,9 @@
 import React from 'react';
 import ArrowRightIcon from '@material-ui/icons/NavigateNextOutlined';
+import data from '../../data';
 
 import styles from './SideComments.module.scss';
-
-export const comments = [
-  {
-    id: 1,
-    user: {
-      fullName: 'Elchin Gurbanli',
-      avatarUrl: 'https://leonardo.osnova.io/51a34da2-6f06-5f97-a3b3-5a94b2d00666/',
-    },
-    text: 'Теперь, каждое рабочее утро, после кровати, я перекладываюсь туда спать ещё на часок. Ну и…',
-    post: {
-      title: 'Какая у вас дома ванна?',
-    },
-    createdAt: new Date().toString(),
-  },
-  {
-    id: 2,
-    user: {
-      fullName: 'Elchin Gurbanli',
-      avatarUrl: 'https://leonardo.osnova.io/a2759960-0908-57df-aac5-61d49d1ef260/',
-    },
-    text: 'Теперь, каждое рабочее утро, после кровати, я перекладываюсь туда спать ещё на часок. Ну и…',
-    post: {
-      title: 'Какая у вас дома ванна?',
-    },
-    createdAt: new Date().toString(),
-  },
-  {
-    id: 3,
-    user: {
-      fullName: 'Elchin Gurbanli',
-      avatarUrl: 'https://leonardo.osnova.io/104b03b4-5173-fd9f-2af9-b458dddc4a23/-/scale_crop/108x108/-/format/webp/',
-    },
-    text: 'Теперь, каждое рабочее утро, после кровати, я перекладываюсь туда спать ещё на часок. Ну и…',
-    post: {
-      title: 'Какая у вас дома ванна?',
-    },
-    createdAt: new Date().toString(),
-  },
-];
-
+import clsx from 'clsx';
 interface CommentItemProps {
   user: {
     fullName: string;
@@ -70,12 +32,19 @@ const CommentItem: React.FC<CommentItemProps> = ({ user, text, post }) => {
 };
 
 export const SideComments = () => {
+
+  const [hideComments, setHideComments] = React.useState(false);
+
+  const toggleVisible = () => {
+    setHideComments(!hideComments);
+  }
+
   return (
-    <div className={styles.root}>
-      <h3>
+    <div className={clsx(styles.root, !hideComments && styles.rotated)}>
+      <h3 onClick={ toggleVisible }>
         Комментарии <ArrowRightIcon />
       </h3>
-      {comments.map((obj) => (
+      {hideComments && data.comments.popular.map((obj) => (
         <CommentItem key={obj.id} {...obj} />
       ))}
     </div>

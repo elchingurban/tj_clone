@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <MainLayout className="mb-50" contentFullWidth>
       <FullPost />
-      <PostComments items={comments}/>
+      <PostComments />
     </MainLayout>
   );
 }
