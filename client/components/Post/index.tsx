@@ -10,7 +10,7 @@ export const Post: React.FC = () => {
   return (
     <Paper elevation={0} className="p-20" classes={{ root: styles.paper }}>
       <Typography variant="h5" className={ styles.title }>
-        <Link href='/news/mariuopol'>
+        <Link href={`/news/{$id}`}>
           <a>
             Авиаудар по Мариуполю. Главное о последствиях и о позициях Украины и России
           </a>

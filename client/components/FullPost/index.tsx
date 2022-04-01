@@ -1,6 +1,5 @@
 import { Button, Paper, Typography } from '@material-ui/core';
 import React from 'react';
-import Image from 'next/image'
 import { PostActions } from '../PostActions';
 import MessageIcon from '@material-ui/icons/TextsmsOutlined';
 import UserAddIcon from '@material-ui/icons/PersonAddOutlined';
