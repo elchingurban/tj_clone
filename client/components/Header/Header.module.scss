@@ -62,3 +62,20 @@
     }
   }
 }
+
+.loginButton {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 15px;
+  cursor: pointer;
+
+  svg {
+    margin-right: 10px;
+  }
+
+  &:hover {
+    color: #E5A040;
+  }
+}
