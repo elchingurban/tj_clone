@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { debugPort } from 'process';
 import { Repository } from 'typeorm';
 
 import { CreateCommentDto } from './dto/create-comment.dto';
@@ -17,7 +18,7 @@ export class CommentService {
     return this.repository.save({
       text: dto.text,
       post: { id: dto.postId },
-      user: { id: 1 },
+      user: { id: dto.userId },
     });
   }
 
