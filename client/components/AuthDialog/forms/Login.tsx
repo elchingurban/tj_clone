@@ -10,11 +10,14 @@ import { LoginFormSchema } from "../../../utils/schemas/validations";
 import { FormField } from "../../FormField";
 import { LoginDto } from "../../../utils/api/types";
 import { UserApi } from "../../../utils/api";
+import { useAppDispatch } from "../../../redux/hooks";
+import { setUserData } from "../../../redux/slices/user";
 interface LoginProps {
   onOpenRegister: () => void;
 }
 
 export const Login: React.FC<LoginProps> = ({ onOpenRegister }) => {
+  const dispatch = useAppDispatch();
   const [errorMessage, setErrorMessage] = React.useState('');
   const form = useForm({
     mode: "onChange",
@@ -30,6 +33,7 @@ export const Login: React.FC<LoginProps> = ({ onOpenRegister }) => {
         path: '/',
       });
       setErrorMessage('');
+      dispatch(setUserData(data));
     } catch (err) {
       console.warn('Login error', err);
       if (err.response) {
