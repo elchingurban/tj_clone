@@ -17,18 +17,9 @@ interface AuthDialogProps {
   visible: boolean;
   onClose: () => void;
 }
-interface State {
-  password: string;
-  showPassword: boolean;
-}
 
 export const AuthDialog: React.FC<AuthDialogProps> = ({ onClose, visible }) => {
   const [formType, setFormType] = React.useState<"main" | "login" | "register">("main");
-
-  const [values, setValues] = React.useState<State>({
-    password: "",
-    showPassword: false,
-  });
 
   return (
     <Dialog open={visible} onClose={onClose} maxWidth="xs" fullWidth>
@@ -52,7 +43,6 @@ export const AuthDialog: React.FC<AuthDialogProps> = ({ onClose, visible }) => {
             {formType === 'register' && (
               <Register onOpenRegister={() => setFormType('register')} onOpenLogin={() => setFormType('login')} />
             )}
-            
           </div>
         </DialogContentText>
       </DialogContent>
