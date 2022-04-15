@@ -2,7 +2,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../../user/user.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -18,7 +18,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const data = { id: payload.id, email: payload.email };
 
     const user = await this.userService.findByCond({ where: data });
-    console.log(data);
 
     if (!user) {
       throw new UnauthorizedException('Нет доступа к этой странице');
@@ -26,6 +25,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     return {
       id: user.id,
       email: user.email,
+      fullName: user.fullName,
     };
   }
 }

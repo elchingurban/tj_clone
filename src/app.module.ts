@@ -23,7 +23,7 @@ import { AuthModule } from './auth/auth.module';
       port: 5432,
       username: 'postgres',
       password: 'root',
-      database: 'tjournal_db',
+      database: 'tjournal',
       entities: [UserEntity, PostEntity, CommentEntity],
       synchronize: true,
     }),
