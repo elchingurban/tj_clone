@@ -1,30 +1,27 @@
-import { Head } from 'next/document';
+import { Head } from "next/document";
+import { CssBaseline, MuiThemeProvider } from "@material-ui/core";
+import { Provider } from "react-redux";
 
-import '../styles/globals.scss';
-import 'macro-css';
+import { theme } from "../theme";
+import { Header } from "../components/Header";
+import { store, wrapper } from "../redux/store";
 
-import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
-import { Provider } from 'react-redux';
+import "../styles/globals.scss";
+import "macro-css";
 
-import { theme } from '../theme';
-import { Header}  from '../components/Header';
-import { store } from '../redux/store';
-
-function MyApp({ Component, pageProps }) {
+export const MyApp = ({ Component, pageProps }) => {
   return (
     <>
-      <head><title>aue</title></head>
+      <head>
+        <title>aue</title>
+      </head>
       <MuiThemeProvider theme={theme}>
-        
         <CssBaseline />
-        <Provider store={store}>
-          <Header />
-          <Component {...pageProps} />
-        </Provider>
+        <Header />
+        <Component {...pageProps} />
       </MuiThemeProvider>
     </>
+  );
+};
 
-  )
-}
-
-export default MyApp
+export default wrapper.withRedux(MyApp);
