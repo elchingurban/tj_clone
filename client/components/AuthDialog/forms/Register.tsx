@@ -7,7 +7,7 @@ import { setCookie } from "nookies";
 import { RegisterFormSchema } from "../../../utils/schemas/validations";
 import { FormField } from "../../FormField";
 import { CreateUserDto } from "../../../utils/api/types";
-import { UserApi } from "../../../utils/api";
+import { Api } from "../../../utils/api";
 
 interface LoginFormProps {
   onOpenRegister: () => void;
@@ -22,7 +22,7 @@ export const Register: React.FC<LoginFormProps> = ({ onOpenRegister, onOpenLogin
 
   const onSubmit = async (dto: CreateUserDto) => {
     try {
-      const data = await UserApi.register(dto);
+      const data = await Api().user.register(dto);
       console.log(data);
       setCookie(null, 'authToken', data.token, {
         maxAge: 30 * 24 * 60 * 60,

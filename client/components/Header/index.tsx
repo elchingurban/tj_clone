@@ -28,6 +28,13 @@ export const Header: React.FC = () => {
   const closeAuthDialog = () => {
     setAuthVisible(false);
   };
+
+  React.useEffect(() => {
+    if (authVisible && userData) {
+      setAuthVisible(false);
+    }
+  }, [authVisible, userData]);
+
   return (
     <Paper classes={{ root: styles.root }} elevation={0}>
       <div className="d-flex align-center">

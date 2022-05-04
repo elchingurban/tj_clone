@@ -9,9 +9,9 @@ import { setCookie } from "nookies";
 import { LoginFormSchema } from "../../../utils/schemas/validations";
 import { FormField } from "../../FormField";
 import { LoginDto } from "../../../utils/api/types";
-import { UserApi } from "../../../utils/api";
 import { useAppDispatch } from "../../../redux/hooks";
 import { setUserData } from "../../../redux/slices/user";
+import { Api } from "../../../utils/api";
 interface LoginProps {
   onOpenRegister: () => void;
 }
@@ -26,7 +26,7 @@ export const Login: React.FC<LoginProps> = ({ onOpenRegister }) => {
 
   const onSubmit = async (dto: LoginDto) => {
     try {
-      const data = await UserApi.login(dto);
+      const data = await Api().user.login(dto);
       console.log(data);
       setCookie(null, 'authToken', data.token, {
         maxAge: 30 * 24 * 60 * 60,
