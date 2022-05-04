@@ -17,8 +17,13 @@ export class PostService {
     @InjectRepository(PostEntity)
     private repository: Repository<PostEntity>,
   ) {}
+
   create(dto: CreatePostDto) {
-    return this.repository.save(dto);
+    return this.repository.save({
+      title: dto.title,
+      body: dto.body,
+      tags: dto.tags,
+    });
   }
 
   findAll() {
@@ -30,17 +35,11 @@ export class PostService {
   }
 
   async popular() {
-    // return this.repository.find({
-    //   order: {
-    //     views: 'DESC',
-    //   },
-    // });
     const qb = this.repository.createQueryBuilder('post');
 
     qb.orderBy('views', 'DESC');
     qb.limit(2);
     const [posts, total] = await qb.getManyAndCount();
-    // console.log(posts[0].title);
 
     return {
       posts,
@@ -76,7 +75,6 @@ export class PostService {
     if (dto.tag) {
       qb.andWhere(`p.tags ILIKE :tag`);
     }
-    // console.log(qb.getSql());
 
     const [items, total] = await qb.getManyAndCount();
     const latin = transliterate(items[0].title);
@@ -86,11 +84,6 @@ export class PostService {
   }
 
   async findOne(id: number) {
-    // const find = await this.repository.findOne({ where: { id } });
-    // if (!find) {
-    //   throw new NotFoundException('Article not found');
-    // }
-    // return find;
     await this.repository
       .createQueryBuilder('posts')
       .whereInIds(id)
