@@ -10,22 +10,22 @@ interface WriteFormProps {
 }
 
 export const WriteForm: React.FC<WriteFormProps> = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [blocks, setBlocks] = useState([]);
 
-  const onAddPost = async  () => {
+  const onAddPost = async () => {
     try {
-      setIsLoading(true);
-      const post = await Api().post.createPost({
+      setLoading(true);
+      const obj = await Api().post.createPost({
         title: title,
         body: blocks,
       });
-      console.log(post);
+      console.log(obj);
     } catch (err) {
       console.warn('Create post ', err);
     } finally{
-      setIsLoading(false);
+      setLoading(false);
     }
   }
 
@@ -38,15 +38,15 @@ export const WriteForm: React.FC<WriteFormProps> = () => {
         placeholder='Заголовок'
       />
       <div className={ styles.editor }>
-        <Editor onChange={blockArray => setBlocks(blockArray)}/>
+        <Editor onChange={(blockArray) => setBlocks(blockArray)}/>
       </div>
       <Button
-        disabled={isLoading }
+        disabled={isLoading}
         onClick={onAddPost}
         variant="contained" 
         color="primary"
       >
-        Опубликовать
+        Post
       </Button>
     </div>
   )

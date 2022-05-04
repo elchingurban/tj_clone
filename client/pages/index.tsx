@@ -12,7 +12,10 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
   console.log(posts);
   return (
     <MainLayout>
-      <Post/>
+      {posts.map((obj) => (
+        <Post key={obj.id} id={obj.id} title={obj.title} description={obj.description} />
+      ))}
+
     </MainLayout>
   );
 }

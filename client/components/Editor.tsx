@@ -12,7 +12,6 @@ export const Editor: React.FC<EditorProps> = ({onChange}) => {
             placeholder: 'Введите текст вашей статьи',
             async onChange() {
                 const { blocks } = await editor.save();
-                console.log(blocks);
                 onChange(blocks);
             }
         });
@@ -25,7 +24,5 @@ export const Editor: React.FC<EditorProps> = ({onChange}) => {
         }
     }, []);
 
-    return (
-        <div id="editor" />
-    );
+    return <div id="editor"/>
 };
