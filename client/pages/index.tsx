@@ -1,36 +1,35 @@
-import { GetServerSideProps } from 'next';
-import { parseCookies } from 'nookies';
+import { NextPage } from 'next';
 
 import { Post } from '../components/Post';
 import { MainLayout } from '../layouts/MainLayout';
-import { setUserData } from '../redux/slices/user';
-import { wrapper } from '../redux/store';
-import { UserApi } from '../utils/api';
+import { Api } from '../utils/api';
 
-export default function Home() {
+interface HomeProps{
+  posts: any[];
+}
+
+const Home: NextPage<HomeProps> = ({ posts }) => {
+  console.log(posts);
   return (
-    // hideMenu={true} hideComments={true} hideContent={true}
     <MainLayout>
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      <Post/>
     </MainLayout>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = 
-  wrapper.getServerSideProps((store) => async (ctx) => {
-    try {
-      const { authToken } = parseCookies(ctx);
+export const getServerSideProps = async (ctx) => {
+  try {
+    const posts = await Api().post.getPosts();
+    return {
+      props: {
+        posts,
+      }
+    };
+  } catch (err) {
+    console.log(err);
+  }
 
-      const userData = await UserApi.getMe(authToken);
-      
-      store.dispatch(setUserData(userData));
+  return { props: { posts : null } };
+}
 
-      return { props: {} };
-    } catch (err) {
-      console.log(err);
-      return { props: {} };
-    }
-})
+export default Home;

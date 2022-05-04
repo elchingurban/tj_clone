@@ -1,15 +1,17 @@
-import { Head } from "next/document";
 import { CssBaseline, MuiThemeProvider } from "@material-ui/core";
-import { Provider } from "react-redux";
 
 import { theme } from "../theme";
 import { Header } from "../components/Header";
-import { store, wrapper } from "../redux/store";
+import { wrapper } from "../redux/store";
 
 import "../styles/globals.scss";
 import "macro-css";
 
-export const MyApp = ({ Component, pageProps }) => {
+import { setUserData } from "../redux/slices/user";
+import { AppProps } from "next/app";
+import { Api } from "../utils/api";
+
+function App({ Component, pageProps }: AppProps){
   return (
     <>
       <head>
@@ -24,4 +26,23 @@ export const MyApp = ({ Component, pageProps }) => {
   );
 };
 
-export default wrapper.withRedux(MyApp);
+App.getInitialProps = wrapper.getInitialAppProps((store) => async ({ctx, Component}) => {
+  try {
+    const userData = await Api(ctx).user.getMe();
+    
+    store.dispatch(setUserData(userData));
+  } catch (err) {
+    if (ctx.asPath === '/write') {
+      ctx.res.writeHead(302, {
+        Location: '/403',
+      });
+      ctx.res.end();
+    }
+    console.log(err);
+  }
+  return {pageProps: {
+    ...(Component.getInitialProps ? await Component.getInitialProps({...ctx, store}): {})
+  }};
+})
+
+export default wrapper.withRedux(App);
