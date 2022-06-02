@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import EditorJS, { OutputData } from '@editorjs/editorjs';
 
 interface EditorProps {
@@ -6,7 +6,7 @@ interface EditorProps {
 }
 
 export const Editor: React.FC<EditorProps> = ({onChange}) => {
-    React.useEffect(() => {
+    useEffect(() => {
         const editor = new EditorJS({
             holder: 'editor',
             placeholder: 'Введите текст вашей статьи',

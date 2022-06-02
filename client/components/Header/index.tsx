@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 
 import { Paper, Button, IconButton, Avatar } from "@material-ui/core";
@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
     setAuthVisible(false);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (authVisible && userData) {
       setAuthVisible(false);
     }
